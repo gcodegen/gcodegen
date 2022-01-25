@@ -80,7 +80,7 @@ function myFunction() {
         document.getElementById("boxModel").style.backgroundImage = "none";
     }
     else if (materialText == "14G Paintlock") {
-        document.getElementById("materialCode").innerHTML = "C-SECC2.0-L2-"
+        document.getElementById("materialCode").innerHTML = "C-SECC2.0-L2-";
         document.getElementById("boxModel").style.backgroundImage = "none";
     }
     else if (materialText == "16G Galvanized") {
