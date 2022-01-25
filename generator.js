@@ -93,15 +93,15 @@ function myFunction() {
     }
     else if (materialText == "22G Stainless" || materialText == "22G Chrome") {
         document.getElementById("materialCode").innerHTML = "C-SUS0.8-L2";
-        document.getElementById("boxModel").style.backgroundImage = "none";
+        document.getElementById("boxModel").style.backgroundImage = "ss.jpg";
     }
     else if (materialText == "16G Stainless") {
         document.getElementById("materialCode").innerHTML = "C-SUS1.5-L2-";
-        document.getElementById("boxModel").style.backgroundImage = "none";
+        document.getElementById("boxModel").style.backgroundImage = "ss.jpg";
     }
     else if (materialText == "14G Stainless") {
         document.getElementById("materialCode").innerHTML = "C-SUS2.0-L2-ETCH";
-        document.getElementById("boxModel").style.backgroundImage = "none";
+        document.getElementById("boxModel").style.backgroundImage = "ss.jpg";
     }    
     else {
         document.getElementById("materialCode").innerHTML = "";
