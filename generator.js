@@ -103,6 +103,10 @@ function myFunction() {
         document.getElementById("materialCode").innerHTML = "C-SUS2.0-L2-ETCH";
         document.getElementById("boxModel").style.backgroundImage = "url(ss.jpg)";
     }    
+    else if (materialText == "22G Chrome") {
+        document.getElementById("materialCode").innerHTML = "C-SUS0.8-L2";
+        document.getElementById("boxModel").style.backgroundImage = "url(ss.jpg)";
+    }   
     else {
         document.getElementById("materialCode").innerHTML = "";
         document.getElementById("boxModel").style.backgroundImage = "url(ss.jpg)";
