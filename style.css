@@ -1,0 +1,128 @@
+body {
+                padding: 0;
+                margin: 0 1em 0 1em;
+                height: 100%;
+                background-color: white;
+            }
+            h1 {
+                max-height: 25vw;
+                width: 100%;
+                text-align: center;
+                font-family: sans-serif;
+                text-transform: uppercase;
+                color: black;
+                border-bottom: 1px solid black;
+            }
+            #boxCreator {
+                display: grid;
+                grid-template-columns: auto auto;
+                height: 100%;
+                padding: 1em 1em 0 1em;
+            }       
+            #sizeForm {
+                font-size: 32px;
+            }
+            #sizeInput {
+                padding: 5px;
+                grid-column: 1 / span 2;
+                color: black;
+                font-family: sans-serif;
+                text-transform: uppercase;
+                font-weight: bold;
+                text-align: center;
+            }
+            #sizeForm {
+                display: inline;
+            }
+            input {
+                background-color: rgba(155,155,155,0.5);
+                border: none;
+                font-family: Menlo, Consolas, "Courier New", Courier, "Liberation Mono", monospace;
+                color: black;
+                padding: 0.25em;
+                border-radius: 5px;
+            }
+            #inputButton {
+                font-size: 32px;
+                text-transform: uppercase;
+                font-weight: bold;
+                color: black;
+                border-radius: 5px;
+                background-color: rgba(155,155,155,0.5);
+                padding: 0.25em;
+                border: none;
+            }
+            #inputButton:hover {
+                background-color: black;
+                color: grey;
+            }
+            #edit_options {
+                grid-column: 1 / span 2;
+                color: black;
+                background-color: rgba(155,155,155,0.5);
+                border: 1px solid rgba(155,155,155,0.5);
+                width: 70%;
+                text-align: center;
+                margin: 0 auto;
+                padding: 1em;
+                border-radius: 1em;
+                margin-bottom: 1em;
+            }
+            #optionsForm input {
+                color: black;
+                background-color: white;
+            }
+            #copyClipboard{
+                height: 2em;
+                width: 25%;
+                border-radius: 0.25em;
+                margin-top: 1em;
+                transition: width 0.25s;
+                border: none;
+                background-color: black;
+            }
+            #copyClipboard span {
+                color: white;
+            }
+            #copyClipboard:hover{
+                width: 35%;
+                background-color: black;
+            }
+            #copyClipboard:active {
+                background-color: green;
+            }
+            #copyClipboard:active span{
+                color: black;
+            }
+            #gcodeOutput {
+                width: 45vw;
+            }
+            #codeDisplay {
+                width: 35vw;
+                height: 85vh;
+                background-color: rgba(155,155,155,0.5);
+                margin: 0 auto;
+                overflow: scroll;
+                position: relative;
+                top: 0;
+                border-radius: 1em;
+            }
+            #gCode {
+                color: black;
+                margin: 5px;
+                font-family: Menlo, Consolas, "Courier New", Courier, "Liberation Mono", monospace;
+            }
+            span {
+                color: red;
+                font-weight: bold;
+            }
+            #boxOutput {
+                width: 45vw;
+            }
+            #boxModel {
+                border: 2px solid black;
+                margin: 10% auto;
+            }
+            #example {
+                font-size: 3vh;
+            }
