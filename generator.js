@@ -91,7 +91,7 @@ function myFunction() {
         document.getElementById("materialCode").innerHTML = "C-SPG2.6-L2-";
         document.getElementById("boxModel").style.backgroundImage = "none";
     }
-    else if (materialText == "22G Stainless" || materialText == "22G Chrome") {
+    else if (materialText == "22G Stainless") {
         document.getElementById("materialCode").innerHTML = "C-SUS0.8-L2";
         document.getElementById("boxModel").style.backgroundImage = "url(ss.jpg)";
     }
