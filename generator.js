@@ -105,7 +105,7 @@ function myFunction() {
     }    
     else if (materialText == "22G Chrome") {
         document.getElementById("materialCode").innerHTML = "C-SUS0.8-L2";
-        document.getElementById("boxModel").style.backgroundImage = "url(ss.jpg)";
+        document.getElementById("boxModel").style.backgroundImage = "none";
     }   
     else {
         document.getElementById("materialCode").innerHTML = "";
