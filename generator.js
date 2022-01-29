@@ -1,12 +1,15 @@
 /* global document, window */
+var xInput, x, y, firstHole, secondHole;
+
 function myFunction() {
     "use strict";
     
-    var xInput = document.getElementById("sizeForm"),
-        x = parseFloat(xInput.elements[0].value),
-        screenHeight = window.innerHeight,
+    xInput = document.getElementById("sizeForm"),
+    x = parseFloat(xInput.elements[0].value),
+    y = parseFloat(xInput.elements[1].value);
+        
+    var screenHeight = window.innerHeight,
         screenWidth = window.innerWidth,
-        y = parseFloat(xInput.elements[1].value),
         optionsInput = document.getElementById("optionsForm"),
         jobNumber = optionsInput.elements[1].value,
         partNumber = optionsInput.elements[2].value,
@@ -116,6 +119,7 @@ function myFunction() {
     }
     
     addClass();
+    calculateHoles();
 }
 
 //Following function copies "gCode" text content to clipboard
@@ -140,35 +144,52 @@ function addClass() {
     };
 }
 
-function edit(letter) {
-    
-}
-//FOLLOWING FUNCTION IS A CHECKBOX TEST
-document.getElementById('hangingHoles').onclick = function() {
-    // access properties using this keyword
-    if ( this.checked ) {
-        // Returns true if checked
-        document.getElementById("append-holes").innerHTML = 
-            `E7<br>
-            G00G41X(VALUE)Y(VALUE)<br>
-            M103<br>
-            G01X(VALUE)Y(Value)<br>
-            G03I-0.125J0<br>
-            M104<br>
-            G00G40<br>
-            G00G41X(VALUE)Y(VALUE)<br>
-            M103<br>
-            G01X(Value)Y(Value)<br>
-            G03I-0.125J0<br>
-            M104<br>
-            G00G40<br>`;
+function addHoles() {
+    myFunction();
+    if ( document.getElementById("add-holes").value === "no-holes" ) {
+            document.getElementById("add-holes").value = "with-holes";
+            calculateHoles();
             addClass();
-    } else {
-        // Returns false if not checked
-        document.getElementById("append-holes").innerHTML = "";
+            document.getElementById("add-holes-button").innerHTML = "Remove Hanging Holes";
+    } else if (document.getElementById("add-holes").value === "with-holes") {
+            document.getElementById("append-holes").innerHTML = "";
+            document.getElementById("add-holes-button").innerHTML = "Add Hanging Holes";
+            document.getElementById("add-holes").value = "no-holes";
     }
 }
 
+function calculateHoles() {
+    
+    if (document.getElementById("add-holes").value === "with-holes") {
+        if (x >= 90) { 
+            firstHole = (((x - 82)/2)-0.125);
+            secondHole = ((x - firstHole)-0.25);
+        } else if (x < 90 && x > 24) {
+            firstHole = 4;
+            secondHole = (x - firstHole);
+        } else {
+            firstHole = 0.25;
+            secondHole = (x - firstHole);
+        }
+        document.getElementById("append-holes").innerHTML = 
+            "E7<br>\
+            G00G41X" + firstHole + "Y0.25<br>\
+            M103<br>\
+            G01X" + (firstHole + 0.125) + "Y0.25<br>\
+            G03I-0.125J0<br>\
+            M104<br>\
+            G00G40<br>\
+            G00G41X" + secondHole + "Y0.25<br>\
+            M103<br>\
+            G01X" + ( secondHole + 0.125 ) + "Y0.25<br>\
+            G03I-0.125J0<br>\
+            M104<br>\
+            G00G40<br>";
+            addClass();
+    } else {
+        document.getElementById("append-holes").innerHTML = "";
+    }
+}
 // listen to enter key to generate g code
 document.addEventListener ('keydown', function(e){
     if (e.which === 13) myFunction();

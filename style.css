@@ -72,7 +72,7 @@ body {
                 color: black;
                 background-color: white;
             }
-            #copyClipboard{
+            #copyClipboard, #add-holes{
                 height: 2em;
                 width: 25%;
                 border-radius: 0.25em;
@@ -81,10 +81,10 @@ body {
                 border: none;
                 background-color: black;
             }
-            #copyClipboard span {
+            #copyClipboard span, #add-holes {
                 color: white;
             }
-            #copyClipboard:hover{
+            #copyClipboard:hover, #add-holes:hover{
                 width: 35%;
                 background-color: black;
             }
