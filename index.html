@@ -41,13 +41,15 @@
                     </select>
                     Job ID: <input type="text" name="jobId" value="wo#" style="font-size: 16px; width: 15%">        
                     Part Number: <input type="text" name="partNumber" value="1" style="font-size: 16px; width: 15%">
+                    Hanging Holes <input type="checkbox" id="hangingHoles" value="It works.">
                 </form>
                 <button id="copyClipboard" onclick="copyDivToClipboard()"><span>Copy to Clipboard</span></button>
             </div>
             <!--LEFT SIDE OF BOX CREATOR IS FOR G CODE OUTPUT-->
             <div id="gcodeOutput">
                 <div id="codeDisplay">
-                    <p id="gCode">(PR/<span id="humanReadableName"></span>)<br>
+                    <p id="gCode"><span id="commentSection">
+                        (PR/<span id="humanReadableName"></span>)<br>
                         (MA/<span id="materialCode"></span>)<br>
                         (CR/Y<span id="createYear"></span>M<span id="createMonth"></span>D<span id="createDay"></span>)<br>
                         (CM/<span id="material"></span>)<br>
@@ -59,25 +61,27 @@
                         (PROGRAMMER NAME - BOX GENERATOR)<br>
                         (DATE - <span id="date"></span>)<br>
                         (TIME - <span id="time"></span>)<br>
-                        (-------------------------------)<br>
+                        (-------------------------------)<br></span>
+                        <span id="edit-code">
                         G90G92X0Y0<br>
                         /G121L2A1X0.0Y0.0I140.4000J15.6000Q36.000B0C0Z2.000D2.0000W0<br>
                         M100<br>
                         G93X0.3750Y0.3750<br>
-                        E8<br>
-                        G00G41X<span id="pierceLength"></span>Y<span class="yHalfWidth"></span><br>
+                        <span id="append-holes"></span>
+                        <span id="cut-condition">E8<br>
+                        G00G41X<span id="pierce-length"></span>Y<span class="y-half-width"></span><br>
                         M103<br>
                         G01X<span class="x"></span><br>
                         Y0.0000<br>
                         X0.0000<br>
                         Y<span class="y"></span><br>
                         X<span class="x"></span><br>
-                        Y<span class="yHalfWidth"></span><br>
+                        Y<span class="y-half-width"></span><br>
                         M104<br>
-                        G00X0Y<span class="y"></span><br>
+                        G00X0Y<span class="y"></span><br></span>
                         M101<br>
                         M30<br>
-                        %
+                        %</span>
                     </p>
                 </div>
             </div>

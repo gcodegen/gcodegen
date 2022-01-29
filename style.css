@@ -100,7 +100,7 @@ body {
             #codeDisplay {
                 width: 35vw;
                 height: 85vh;
-                background-color: rgba(155,155,155,0.5);
+                background-color: black;
                 margin: 0 auto;
                 overflow: scroll;
                 position: relative;
@@ -108,13 +108,26 @@ body {
                 border-radius: 1em;
             }
             #gCode {
-                color: black;
+                color: white;
                 margin: 5px;
                 font-family: Menlo, Consolas, "Courier New", Courier, "Liberation Mono", monospace;
             }
             span {
-                color: red;
                 font-weight: bold;
+            }
+            #commentSection {
+                color: rgba(0, 255, 0, 0.8);
+            }
+            #append-holes {
+                background-color: rgba(0, 255, 0, 0.3);
+                display: block;
+            }
+            #cut-condition {
+                background-color: rgba(255, 0, 255, 0.2);
+                display: block;
+            }
+            .letters {
+                color: rgb(0,175, 255);
             }
             #boxOutput {
                 width: 45vw;

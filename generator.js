@@ -16,7 +16,10 @@ function myFunction() {
         conversionRate = y / x,
         boxWidth = conversionRate * boxHeight,
         partName = "part-" + partNumber,
-        i = 0;
+        i = 0,
+        doc = document;
+    
+
                 
     document.getElementById("boxModel").style.borderColor = "black";
 
@@ -44,18 +47,18 @@ function myFunction() {
     }
                 
     document.getElementById("partName").innerHTML = partName;
-    document.getElementById("pierceLength").innerHTML = xPierce;
+    document.getElementById("pierce-length").innerHTML = xPierce;
     let xReplace = document.getElementsByClassName("x");
     for (i = 0; i < xReplace.length ; i++) {
-        xReplace[i].innerHTML = x;
+        xReplace[i].textContent = x;
     }
                 
     let yReplace = document.getElementsByClassName("y");
     for (i = 0; i < yReplace.length ; i++) {
-        yReplace[i].innerHTML = y;
+        yReplace[i].textContent = y;
     }
                 
-    let halfY = document.getElementsByClassName('yHalfWidth');
+    let halfY = document.getElementsByClassName('y-half-width');
     for (i = 0; i < halfY.length ; i++) {
         halfY[i].innerHTML = yHalf;
     }
@@ -72,7 +75,7 @@ function myFunction() {
     //Change background image/color based on material choice.
     //Also changes material code (useful for machine operator to reference)
     if (materialText == "22G Paintlock" || materialText == "Textured" || materialText == "22G Galvanized") {
-        document.getElementById("materialCode").innerHTML = "C-SECC0.8-L2-";
+        doc.getElementById("materialCode").innerHTML = "C-SECC0.8-L2-";
         document.getElementById("boxModel").style.backgroundImage = "none";
     }
     else if (materialText == "16G Paintlock") {
@@ -104,16 +107,18 @@ function myFunction() {
         document.getElementById("boxModel").style.backgroundImage = "url(ss.jpg)";
     }    
     else if (materialText == "22G Chrome") {
-        document.getElementById("materialCode").innerHTML = "C-SUS0.8-L2";
+        document.getElementById("materialCode").textContent = "C-SUS0.8-L2";
         document.getElementById("boxModel").style.backgroundImage = "none";
     }   
     else {
         document.getElementById("materialCode").innerHTML = "";
         document.getElementById("boxModel").style.backgroundImage = "url(ss.jpg)";
     }
-
+    
+    addClass();
 }
 
+//Following function copies "gCode" text content to clipboard
 function copyDivToClipboard() {
     var range = document.createRange();
     range.selectNode(document.getElementById("gCode"));
@@ -123,6 +128,48 @@ function copyDivToClipboard() {
     window.getSelection().removeAllRanges();// to deselect
 }
 
+//Following Function adds "letter" class to all G and M code commands
+function addClass() {
+    const letters = ["M", "G", "X", "Y", "I", "J", "Q", "C", "Z", "D", "W", "B", "L", "A", "E"];
+    for (const letter of letters) {
+        const replace = "\[" + letter + "]";
+        const re = new RegExp(replace,"g");
+        const code = document.getElementById("edit-code").innerHTML;
+        var edited = code.replace(re, '<span class="letters">' + letter + '</span>');
+        document.getElementById("edit-code").innerHTML = edited;
+    };
+}
+
+function edit(letter) {
+    
+}
+//FOLLOWING FUNCTION IS A CHECKBOX TEST
+document.getElementById('hangingHoles').onclick = function() {
+    // access properties using this keyword
+    if ( this.checked ) {
+        // Returns true if checked
+        document.getElementById("append-holes").innerHTML = 
+            `E7<br>
+            G00G41X(VALUE)Y(VALUE)<br>
+            M103<br>
+            G01X(VALUE)Y(Value)<br>
+            G03I-0.125J0<br>
+            M104<br>
+            G00G40<br>
+            G00G41X(VALUE)Y(VALUE)<br>
+            M103<br>
+            G01X(Value)Y(Value)<br>
+            G03I-0.125J0<br>
+            M104<br>
+            G00G40<br>`;
+            addClass();
+    } else {
+        // Returns false if not checked
+        document.getElementById("append-holes").innerHTML = "";
+    }
+}
+
+// listen to enter key to generate g code
 document.addEventListener ('keydown', function(e){
     if (e.which === 13) myFunction();
 })
