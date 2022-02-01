@@ -1,5 +1,6 @@
 /* global document, window */
 var xInput, x, y, firstHole, secondHole;
+const letters = ["M", "G", "X", "Y", "I", "J", "Q", "C", "Z", "D", "W", "B", "L", "A", "E"];
 
 function myFunction() {
     "use strict";
@@ -134,14 +135,17 @@ function copyDivToClipboard() {
 
 //Following Function adds "letter" class to all G and M code commands
 function addClass() {
-    const letters = ["M", "G", "X", "Y", "I", "J", "Q", "C", "Z", "D", "W", "B", "L", "A", "E"];
-    for (const letter of letters) {
-        const replace = "\[" + letter + "]";
-        const re = new RegExp(replace,"g");
-        const code = document.getElementById("edit-code").innerHTML;
-        var edited = code.replace(re, '<span class="letters">' + letter + '</span>');
-        document.getElementById("edit-code").innerHTML = edited;
-    };
+    const gCode = document.getElementById("edit-code");
+    const ifLetters = gCode.querySelectorAll("span.letters");
+    if ( ifLetters.length == 0 ) {
+        for (const letter of letters) {
+            const replace = "\[" + letter + "]";
+            const re = new RegExp(replace,"g");
+            const code = document.getElementById("edit-code").innerHTML;
+            var edited = code.replace(re, '<span class="letters">' + letter + '</span>');
+            document.getElementById("edit-code").innerHTML = edited;
+        }
+    }
 }
 
 function addHoles() {
@@ -149,13 +153,15 @@ function addHoles() {
     if ( document.getElementById("add-holes").value === "no-holes" ) {
             document.getElementById("add-holes").value = "with-holes";
             calculateHoles();
-            addClass();
+            addClass();   
             document.getElementById("add-holes-button").innerHTML = "Remove Hanging Holes";
     } else if (document.getElementById("add-holes").value === "with-holes") {
             document.getElementById("append-holes").innerHTML = "";
             document.getElementById("add-holes-button").innerHTML = "Add Hanging Holes";
             document.getElementById("add-holes").value = "no-holes";
     }
+    
+
 }
 
 function calculateHoles() {
@@ -184,8 +190,19 @@ function calculateHoles() {
             G01X" + ( secondHole + 0.125 ) + "Y0.25<br>\
             G03I-0.125J0<br>\
             M104<br>\
-            G00G40<br>";
+            G00G40<br></span>";
             addClass();
+        
+        const holesCode = document.getElementById("append-holes");
+        const ifHoles = holesCode.querySelectorAll("span.letter");
+            if ( ifHoles.length == 0 && document.getElementById("add-holes").value === "with-holes" ) {
+                for (const letter of letters) {
+                    const replace = "\[" + letter + "]";
+                    const re = new RegExp(replace,"g");
+                    const code = document.getElementById("append-holes").innerHTML;
+                    var edited = code.replace(re, '<span class="letters">' + letter + '</span>');
+                    document.getElementById("append-holes").innerHTML = edited; }
+        }
     } else {
         document.getElementById("append-holes").innerHTML = "";
     }
